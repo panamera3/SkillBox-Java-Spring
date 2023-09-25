@@ -7,9 +7,6 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="myPet" class="com.example.mod1.spring_homework.homework1.Cat">
-
-    </bean>
-
+    <bean id="myPet" class="com.example.mod1.spring_homework.homework1.Cat"/>
 
 </beans>
