@@ -1,8 +1,7 @@
-package com.example.mod1.spring_homework.homework2;
+package com.example.mod1.spring_homework.homework3;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component("personBean")
@@ -10,9 +9,7 @@ public class Person {
     //@Autowired
     //@Qualifier("dogBean")
     private Pet pet;
-    //@Value("${person.surname}")
     private String surname;
-    //@Value("${person.age}")
     private int age;
 
     /*

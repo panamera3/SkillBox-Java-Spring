@@ -18,11 +18,11 @@ public class Dog implements Pet {
     */
 
     public void init(){
-        System.out.println("Class God: init() method");
+        System.out.println("Class Dog: init() method");
     }
 
     public void destroy(){
-        System.out.println("Class God: destroy() method");
+        System.out.println("Class Dog: destroy() method");
     }
 
     @Override

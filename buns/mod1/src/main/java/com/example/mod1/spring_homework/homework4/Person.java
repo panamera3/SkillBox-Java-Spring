@@ -1,18 +1,12 @@
-package com.example.mod1.spring_homework.homework2;
+package com.example.mod1.spring_homework.homework4;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
-@Component("personBean")
 public class Person {
-    //@Autowired
-    //@Qualifier("dogBean")
     private Pet pet;
-    //@Value("${person.surname}")
+    @Value("${person.surname}")
     private String surname;
-    //@Value("${person.age}")
+    @Value("${person.age}")
     private int age;
 
     /*
@@ -21,14 +15,11 @@ public class Person {
     }
     */
 
-    @Autowired
-    public Person(@Qualifier("dogBean") Pet pet) {
+    public Person(Pet pet) {
         System.out.println("Person bean is created");
         setPet(pet);
     }
 
-    //@Autowired
-    //@Qualifier("dogBean")
     public void setPet(Pet pet) {
         System.out.println("Setter for pet.");
         this.pet = pet;
