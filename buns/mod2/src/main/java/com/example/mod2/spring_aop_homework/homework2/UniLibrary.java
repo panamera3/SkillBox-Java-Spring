@@ -26,7 +26,7 @@ public class UniLibrary extends AbstractLibrary {
         System.out.println("Возвращаем журнал в UniLibrary.");
         System.out.println("------------------------------------------");
     }
-
+ 
     public void addBook(String person_name, Book book){
         System.out.println("Добавляем книгу в UniLibrary");
         System.out.println("------------------------------------------");
