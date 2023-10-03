@@ -10,7 +10,7 @@ public class University {
     private List<Student> students = new ArrayList<>();
 
     public void addStudents(){
-        Student st1 = new Student("Elena Pyanova", 3, 9.9);
+        Student st1 = new Student("Elena Pyanova", 3, 9.8);
         Student st2 = new Student("Ivan Ivanov", 1, 5.0);
         Student st3 = new Student("Petr Petrov", 2, 7.2);
 
@@ -20,6 +20,8 @@ public class University {
     }
 
     public List<Student> getStudents(){
+        System.out.println("Start of method getStudents");
+        System.out.println(students.get(5));
         System.out.println("Info from method getStudents: ");
         System.out.println(students);
 
