@@ -1,12 +1,15 @@
 package org.example.web.dto;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 public class Book {
     private Integer id;
 
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     private String author;
-
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     private String title;
     @Digits(integer = 4, fraction = 0)
     private Integer size;
