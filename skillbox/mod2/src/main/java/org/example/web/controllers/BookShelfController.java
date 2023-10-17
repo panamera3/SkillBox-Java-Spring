@@ -65,6 +65,7 @@ public class BookShelfController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", new Book());
             model.addAttribute("bookList", bookService.getAllBooks());
+            model.addAttribute("booksToRemove", new BooksToRemove());
             return "book_shelf";
         } else {
             bookService.removeBookById(bookIdToRemove.getId());
@@ -77,6 +78,7 @@ public class BookShelfController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", new Book());
             model.addAttribute("bookList", bookService.getAllBooks());
+            model.addAttribute("bookIdToRemove", new BookIdToRemove());
             return "book_shelf";
         } else {
             bookService.removeBooksByRegex(booksToRemove.getRegEx());

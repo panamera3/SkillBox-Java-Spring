@@ -69,6 +69,23 @@
         </table>
     </form>
 
+    <!-- вида "author=1" || "size=3" etc. -->
+    <form method="post" th:action="@{/books/removeByRegex}" th:object="${booksToRemove}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="regex" th:field="*{regEx}">
+                </td>
+                <td>
+                    <input type="submit" value="remove by regex">
+                </td>
+                <td th:if="${#fields.hasErrors()}">
+                    <p>Wrong regex(must be of the form: field=value) or empty string</p>
+                </td>
+            </tr>
+        </table>
+    </form>
+
     <form method="post" th:action="@{/books/uploadFile}" enctype="multipart/form-data">
         <table>
             <tr>
@@ -81,38 +98,7 @@
             </tr>
         </table>
     </form>
-    <form method="post" th:action="@{/books/removeByRegex}">
-        <table>
-            <tr>
-                <td>
-                    <!-- вида "author=1" || "size=3" etc. -->
-                    <input type="text" placeholder="regex" th:name="queryRegex">
-                </td>
-                <td>
-                    <input type="submit" value="remove by regex">
-                </td>
-            </tr>
-        </table>
-    </form>
 
-    <!-- вида "author=1" || "size=3" etc. -->
-    <!--
-    <form method="post" th:action="@{/books/removeByRegex}" th:object="${booksToRemove}">
-        <table>
-            <tr>
-                <td>
-                    <input type="text" placeholder="regex" th:field="*{book}">
-                </td>
-                <td>
-                    <input type="submit" value="remove by regex">
-                </td>
-                <td th:if="${#fields.hasErrors()}">
-                    <p>Wrong regex(must be of the form: field=value) or empty string</p>
-                </td>
-            </tr>
-        </table>
-    </form>
-    -->
     <table id="books">
         <tr>
             <th>id</th>
