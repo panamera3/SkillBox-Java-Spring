@@ -24,12 +24,13 @@ public class MainPageController {
     }
 
     @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks(){
+    public List<Book> recommendedBooks() {
         return bookService.getBooksData();
     }
 
     @GetMapping("/")
-    public String mainPage(Model model){
+    public String mainPage(Model model) {
+        model.addAttribute("booksList", bookService.getBooksData());
         return "index";
     }
 }

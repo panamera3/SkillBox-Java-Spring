@@ -11,22 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class AuthorsController {
-
-    private final AuthorService authorService;
-
-    @Autowired
-    public AuthorsController(AuthorService authorService) {
-        this.authorService = authorService;
-    }
-
-    @ModelAttribute("authorsMap")
-    public Map<String,List<Author>> authorsMap(){
-        return authorService.getAuthorsMap();
-    }
-
-    @GetMapping("/authors")
+public class GenresController {
+    @GetMapping("/genres")
     public String authorsPage(){
-        return "authors/index";
+        return "genres/index";
     }
 }
