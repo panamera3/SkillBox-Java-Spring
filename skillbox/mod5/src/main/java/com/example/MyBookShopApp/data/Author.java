@@ -1,34 +1,23 @@
 package com.example.MyBookShopApp.data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "authors")
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String firstName;
-    private String lastName;
+    @Column
+    private String photo;
+    @Column
+    private String slug;
+    @Column
+    private String name;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-
-    @OneToMany(mappedBy = "author")
-    private List<Book> bookList = new ArrayList<>();
-
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
-    }
-
-    @Override
-    public String toString() {
-        return firstName + ' ' + lastName;
+    public Author() {
     }
 
     public Integer getId() {
@@ -39,19 +28,35 @@ public class Author {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

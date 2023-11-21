@@ -1,16 +1,13 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.Book;
-import com.example.MyBookShopApp.data.BookService;
+import com.example.MyBookShopApp.data.book.Book;
+import com.example.MyBookShopApp.data.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,12 +21,13 @@ public class MainPageController {
     }
 
     @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks(){
+    public List<Book> recommendedBooks() {
         return bookService.getBooksData();
     }
 
     @GetMapping("/")
-    public String mainPage(Model model){
+    public String mainPage(Model model) {
+        model.addAttribute("booksList", bookService.getBooksData());
         return "index";
     }
 }
