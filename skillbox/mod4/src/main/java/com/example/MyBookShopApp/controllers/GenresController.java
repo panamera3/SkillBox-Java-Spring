@@ -13,7 +13,7 @@ import java.util.Map;
 @Controller
 public class GenresController {
     @GetMapping("/genres")
-    public String authorsPage(){
+    public String genresPage(){
         return "genres/index";
     }
 }
