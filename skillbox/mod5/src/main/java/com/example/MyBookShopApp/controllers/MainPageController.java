@@ -54,6 +54,7 @@ public class MainPageController {
                                      @RequestParam("limit") Integer limit) {
         return new BooksPageDto(bookService.getPageofRecommendedBooks(offset, limit).getContent());
     }
+
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto() {
         return new SearchWordDto();
