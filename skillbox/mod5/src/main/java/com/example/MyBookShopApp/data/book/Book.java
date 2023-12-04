@@ -54,6 +54,54 @@ public class Book {
     @ApiModelProperty("discount value for book")
     private Double price;
 
+    @Column(name = "bought_count")
+    @JsonProperty("bought_count")
+    private Integer bought_count;
+
+    @Column(name = "cart_count")
+    @JsonProperty("cart_count")
+    private Integer cartCount;
+
+    @Column(name = "wishlist_count")
+    @JsonProperty("wishlist_count")
+    private Integer wishlistCount;
+
+    @Column(name = "total_count")
+    @JsonProperty("total_count")
+    private Integer totalCount;
+
+    @Column(name = "popularity")
+    @JsonProperty("popularity")
+    private Double popularity;
+
+    @ManyToOne
+    @JoinColumn(name = "tag_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Tag tag;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 
     public Integer getIsBesteller() {
         return isBesteller;
@@ -69,6 +117,14 @@ public class Book {
 
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getImage() {
@@ -87,38 +143,6 @@ public class Book {
         this.description = description;
     }
 
-    public Date getPubDate() {
-        return pubDate;
-    }
-
-    public void setPubDate(Date pubDate) {
-        this.pubDate = pubDate;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Integer getPriceOld() {
         return priceOld;
     }
@@ -133,6 +157,54 @@ public class Book {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getBought_count() {
+        return bought_count;
+    }
+
+    public void setBought_count(Integer bought_count) {
+        this.bought_count = bought_count;
+    }
+
+    public Integer getCartCount() {
+        return cartCount;
+    }
+
+    public void setCartCount(Integer cartCount) {
+        this.cartCount = cartCount;
+    }
+
+    public Integer getWishlistCount() {
+        return wishlistCount;
+    }
+
+    public void setWishlistCount(Integer wishlistCount) {
+        this.wishlistCount = wishlistCount;
+    }
+
+    public Integer getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
+    }
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 
     @Override

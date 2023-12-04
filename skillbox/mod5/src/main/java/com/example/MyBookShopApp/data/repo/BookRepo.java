@@ -37,4 +37,10 @@ public interface BookRepo extends JpaRepository<Book,Integer> {
 
     @Query(value = "SELECT * FROM books WHERE b.pubDate BETWEEN :from AND :to", nativeQuery = true)
     Page<Book> findBooksByDateBetween(@Param("from") Date from, @Param("to") Date to, Pageable pageable);
+
+    @Query(value = "SELECT * FROM books WHERE id = :id", nativeQuery = true)
+    Book findByIdBook(@Param("id") Integer id);
+
+    @Query(value = "SELECT * FROM books WHERE tag_id = :tag_id", nativeQuery = true)
+    Page<Book> findByTagId(@Param("tag_id") Integer tag_id, Pageable nextPage);
 }

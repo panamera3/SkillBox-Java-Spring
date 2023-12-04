@@ -3,6 +3,7 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.data.BooksPageDto;
 import com.example.MyBookShopApp.data.SearchWordDto;
 import com.example.MyBookShopApp.data.book.Book;
+import com.example.MyBookShopApp.data.book.Tag;
 import com.example.MyBookShopApp.data.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -21,7 +23,6 @@ public class MainPageController {
     public MainPageController(BookService bookService) {
         this.bookService = bookService;
     }
-
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
@@ -36,6 +37,12 @@ public class MainPageController {
     @ModelAttribute("popularBooks")
     public List<Book> popularBooks() {
         return bookService.getPageofPopularBooks(0, 6).getContent();
+    }
+
+    @ModelAttribute("allTags")
+    public List<Tag> allTags() {
+        List<Tag> example = bookService.getTags();
+        return bookService.getTags();
     }
 
     @GetMapping("/")
@@ -75,5 +82,26 @@ public class MainPageController {
                                           @RequestParam("limit") Integer limit,
                                           @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
         return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
+    }
+
+    @GetMapping(value = {"/tags", "/tags/{tagId}/index"})
+    public String tagsBooksResult(@PathVariable(value = "tagId", required = false) Integer tag_id,
+                                  Model model) {
+        Integer actualTagId = tag_id - 1;
+        model.addAttribute("current_tag_id", actualTagId);
+        model.addAttribute("current_tag_name", bookService.getTags().get(actualTagId).getName());
+        model.addAttribute("books",
+                bookService.getPageTagsBooks(tag_id, 0, 5).getContent());
+        return "tags/index";
+    }
+
+    @GetMapping(value = {"/books/tag", "/books/tag/{tagId}"})
+    @ResponseBody
+    public BooksPageDto getRecentBooksPage(@RequestParam("offset") Integer offset,
+                                           @RequestParam("limit") Integer limit,
+                                           @RequestParam(value = "tagId", required = false) Integer tag_id) {
+        if(tag_id != null)
+            return new BooksPageDto(bookService.getPageTagsBooks(tag_id, offset, limit).getContent());
+        return new BooksPageDto(bookService.getPageTagsBooks(offset, limit).getContent());
     }
 }

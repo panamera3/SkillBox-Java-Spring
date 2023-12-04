@@ -4,6 +4,7 @@ import com.example.MyBookShopApp.data.BooksPageDto;
 import com.example.MyBookShopApp.data.SearchWordDto;
 import com.example.MyBookShopApp.data.service.AuthorService;
 import com.example.MyBookShopApp.data.service.BookService;
+import com.example.MyBookShopApp.data.service.BooksRatingAndPopulatityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +17,12 @@ import java.util.Date;
 public class BooksController {
 
     private final BookService bookService;
+    private final BooksRatingAndPopulatityService booksRatingAndPopulatityService;
 
     @Autowired
-    public BooksController(BookService bookService) {
+    public BooksController(BookService bookService, BooksRatingAndPopulatityService booksRatingAndPopulatityService) {
         this.bookService = bookService;
+        this.booksRatingAndPopulatityService = booksRatingAndPopulatityService;
     }
 
 
@@ -42,7 +45,7 @@ public class BooksController {
 
     @GetMapping("/popular/index")
     public String popularPage(Model model) {
-        model.addAttribute("booksData", bookService.getBooksData());
+        model.addAttribute("booksData", bookService.getPageofPopularBooks(0,5).getContent());
         return "books/popular";
     }
 

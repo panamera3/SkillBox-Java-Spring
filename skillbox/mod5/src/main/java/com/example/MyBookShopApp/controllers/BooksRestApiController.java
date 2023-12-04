@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.data.book.Book;
 import com.example.MyBookShopApp.data.service.BookService;
+import com.example.MyBookShopApp.data.service.BooksRatingAndPopulatityService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
