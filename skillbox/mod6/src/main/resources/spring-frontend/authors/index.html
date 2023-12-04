@@ -72,7 +72,7 @@
                             <div class="Authors-letter">
 
                                 <div class="Authors-item" th:each="author : ${authorMapItem.value}">
-                                    <a href="/authors/slug.html" th:text="${author.name}">Алексеев Михаил</a>
+                                    <a href="/books/authors/slug.html" th:href="@{/author/__${author.id}__/index}"  th:text="${author.lastName} + ${author.firstName}">Алексеев Михаил</a>
                                 </div>
                             </div>
                         </div>

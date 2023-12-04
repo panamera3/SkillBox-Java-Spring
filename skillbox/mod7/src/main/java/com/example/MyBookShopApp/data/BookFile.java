@@ -8,28 +8,25 @@ public class BookFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
+    @Column
     private String hash;
 
-    @Column(name = "type_id")
-    private Integer typeId;
+    @Column
+    private int typeId;
 
+    @Column
     private String path;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id",referencedColumnName = "id")
-    private Book book;
-
-    public String getBookFileExtensionString(){
-        return BookFileType.getExtensionStringByTypeID(typeId);
+    public BookFile() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,11 +38,11 @@ public class BookFile {
         this.hash = hash;
     }
 
-    public Integer getTypeId() {
+    public int getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Integer typeId) {
+    public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 
@@ -55,13 +52,5 @@ public class BookFile {
 
     public void setPath(String path) {
         this.path = path;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
     }
 }

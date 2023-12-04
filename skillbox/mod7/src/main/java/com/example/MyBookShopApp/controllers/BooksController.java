@@ -1,69 +1,64 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.Book;
-import com.example.MyBookShopApp.data.BookRepository;
-import com.example.MyBookShopApp.data.ResourceStorage;
-import com.sun.source.doctree.SeeTree;
+import com.example.MyBookShopApp.data.BooksPageDto;
+import com.example.MyBookShopApp.data.SearchWordDto;
+import com.example.MyBookShopApp.data.service.AuthorService;
+import com.example.MyBookShopApp.data.service.BookService;
+import com.example.MyBookShopApp.data.service.BooksRatingAndPopulatityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/books")
 public class BooksController {
 
-    private final BookRepository bookRepository;
-    private final ResourceStorage storage;
-
+    private final BookService bookService;
+    private final BooksRatingAndPopulatityService booksRatingAndPopulatityService;
 
     @Autowired
-    public BooksController(BookRepository bookRepository,ResourceStorage storage) {
-        this.bookRepository = bookRepository;
-        this.storage = storage;
+    public BooksController(BookService bookService, BooksRatingAndPopulatityService booksRatingAndPopulatityService) {
+        this.bookService = bookService;
+        this.booksRatingAndPopulatityService = booksRatingAndPopulatityService;
     }
 
-    @GetMapping("/{slug}")
-    public String bookPage(@PathVariable("slug") String slug, Model model) {
-        Book book = bookRepository.findBookBySlug(slug);
-        model.addAttribute("slugBook", book);
-        return "/books/slug";
+
+    @GetMapping("/recent/index")
+    public String recentPage(Model model) {
+        model.addAttribute("booksData", bookService.getPageofRecentBooks(0, 5).getContent());
+        return "books/recent";
     }
 
-    @PostMapping("/{slug}/img/save")
-    public String saveNewBookImage(@RequestParam("file")MultipartFile file,@PathVariable("slug")String slug) throws IOException {
-        String savePath = storage.saveNewBookImage(file,slug);
-        Book bookToUpdate = bookRepository.findBookBySlug(slug);
-        bookToUpdate.setImage(savePath);
-        bookRepository.save(bookToUpdate); //save new path in db here
-
-        return "redirect:/books/"+slug;
+    @GetMapping("/recent")
+    @ResponseBody
+    public BooksPageDto getRecentBooksPage(@RequestParam("offset") Integer offset,
+                                           @RequestParam("limit") Integer limit,
+                                           @RequestParam(value = "from", required = false) Date from,
+                                           @RequestParam(value = "to", required = false) Date to) {
+        if(from != null && to != null)
+            return new BooksPageDto(bookService.getPageofRecentBooks(offset, limit, from, to).getContent());
+        return new BooksPageDto(bookService.getPageofRecentBooks(offset, limit).getContent());
     }
 
-    @GetMapping("/download/{hash}")
-    public ResponseEntity<ByteArrayResource> bookFile(@PathVariable("hash")String hash) throws IOException{
-        Path path = storage.getBookFilePath(hash);
-        Logger.getLogger(this.getClass().getSimpleName()).info("book file path: "+path);
+    @GetMapping("/popular/index")
+    public String popularPage(Model model) {
+        model.addAttribute("booksData", bookService.getPageofPopularBooks(0,5).getContent());
+        return "books/popular";
+    }
 
-        MediaType mediaType = storage.getBookFileMime(hash);
-        Logger.getLogger(this.getClass().getSimpleName()).info("book file mime type: "+mediaType);
+    @GetMapping("/popular")
+    @ResponseBody
+    public BooksPageDto getBooksPopularPage(@RequestParam("offset") Integer offset,
+                                            @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageofPopularBooks(offset, limit).getContent());
+    }
 
-        byte[] data = storage.getBookFileByteArray(hash);
-        Logger.getLogger(this.getClass().getSimpleName()).info("book file data len: "+data.length);
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename="+path.getFileName().toString())
-                .contentType(mediaType)
-                .contentLength(data.length)
-                .body(new ByteArrayResource(data));
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
     }
 }

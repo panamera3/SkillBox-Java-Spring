@@ -26,10 +26,10 @@
                     </div>
                     <div class="Header-search">
                         <div class="search">
-                            <form class="form form_search" action="#" method="post" data-searchlimit="20">
+                            <form class="form form_search" action="#" method="post" data-searchlimit="20"> <!--  th:object="${searchWordDto}" -->
                                 <input class="search-input" id="query" name="query" type="text"
-                                       placeholder="Search over 30 million book titles"
-                                       th:placeholder="#{searchbar.placeholder}"/>
+                                       placeholder="Search over 30 million book titles" value=""
+                                       th:placeholder="#{searchbar.placeholder}"/> <!-- th:field="*{example}" -->
                                 <button class="search-button" type="submit" name="search" id="search"
                                         th:text="#{searchbar.name}">Поиск
                                 </button>
@@ -91,11 +91,11 @@
                     <li class="menu-item"><a class="menu-link" href="genres.html"
                                              th:text="#{topbar.genres}" th:href="@{/genres}">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="nove.html"
-                                             th:text="#{topbar.news}" th:href="@{/books/recent}">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="recent.html"
+                                             th:text="#{topbar.news}" th:href="@{/books/recent/index}">Новинки</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="popular.html"
-                                             th:text="#{topbar.popular}" th:href="@{/books/popular}">Популярное</a>
+                                             th:text="#{topbar.popular}" th:href="@{/books/popular/index}">Популярное</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="authors.html"
                                              th:text="#{topbar.authors}" th:href="@{/authors}">Авторы</a>

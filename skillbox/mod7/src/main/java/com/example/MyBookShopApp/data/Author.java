@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.data;
 
+import com.example.MyBookShopApp.data.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,7 +22,8 @@ public class Author {
     private String firstName;
     @ApiModelProperty(value = "last name of author", example = "Blaskovits",position = 3)
     private String lastName;
-
+    @ApiModelProperty(value = "biography", example = "dsfdsf",position = 4)
+    private String biography;
 
     @OneToMany(mappedBy = "author")
     @JsonIgnore
@@ -62,5 +64,13 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 }
