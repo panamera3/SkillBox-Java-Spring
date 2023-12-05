@@ -1,13 +1,17 @@
 package com.example.MyBookShopApp.data.book;
 
 import com.example.MyBookShopApp.data.Author;
+import com.example.MyBookShopApp.data.BookFile;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -28,10 +32,15 @@ public class Book {
     @JsonIgnore
     private Author author;
 
+    @JsonGetter("authors")
+    public String authorsFullName() {
+        return author.toString();
+    }
+
     @Column(name = "is_bestseller")
     @ApiModelProperty("if isBestseller = 1 so the book is considered to be bestseller and if 0 the book is not a " +
             "bestseller")
-    private Integer isBesteller;
+    private Integer isBestseller;
 
     @ApiModelProperty("mnemonical identity sequence of characters")
     private String slug;
@@ -47,12 +56,18 @@ public class Book {
     @Column(name = "price")
     @JsonProperty("price")
     @ApiModelProperty("book price without discount")
-    private Integer priceOld;
+    private Integer price;
 
     @Column(name = "discount")
     @JsonProperty("discount")
     @ApiModelProperty("discount value for book")
-    private Double price;
+    private Double discount;
+
+    @JsonProperty
+    public Integer discountPrice() {
+        Integer discountedPriceInt = price - Math.toIntExact(Math.round(discount * price / 100));
+        return discountedPriceInt;
+    }
 
     @Column(name = "bought_count")
     @JsonProperty("bought_count")
@@ -79,6 +94,18 @@ public class Book {
     @JsonIgnore
     private Tag tag;
 
+
+    @OneToMany(mappedBy = "book")
+    private List<com.example.MyBookShopApp.data.BookFile> bookFileList = new ArrayList<>();
+
+    public List<com.example.MyBookShopApp.data.BookFile> getBookFileList() {
+        return bookFileList;
+    }
+
+    public void setBookFileList(List<BookFile> bookFileList) {
+        this.bookFileList = bookFileList;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -103,12 +130,12 @@ public class Book {
         this.author = author;
     }
 
-    public Integer getIsBesteller() {
-        return isBesteller;
+    public Integer getIsBestseller() {
+        return isBestseller;
     }
 
-    public void setIsBesteller(Integer isBesteller) {
-        this.isBesteller = isBesteller;
+    public void setIsBestseller(Integer isBestseller) {
+        this.isBestseller = isBestseller;
     }
 
     public String getSlug() {
@@ -143,20 +170,20 @@ public class Book {
         this.description = description;
     }
 
-    public Integer getPriceOld() {
-        return priceOld;
-    }
-
-    public void setPriceOld(Integer priceOld) {
-        this.priceOld = priceOld;
-    }
-
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double price) {
+        this.discount = price;
     }
 
     public Integer getBought_count() {
@@ -213,8 +240,8 @@ public class Book {
                 "id=" + id +
                 ", author=" + author +
                 ", title='" + title + '\'' +
-                ", priceOld=" + priceOld +
-                ", price=" + price +
+                ", priceOld=" + price +
+                ", price=" + discount +
                 '}';
     }
 }

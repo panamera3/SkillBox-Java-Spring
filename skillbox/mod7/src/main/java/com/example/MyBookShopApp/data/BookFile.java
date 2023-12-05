@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.data;
 
+import com.example.MyBookShopApp.data.book.Book;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,25 +10,28 @@ public class BookFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @Column
     private String hash;
 
-    @Column
-    private int typeId;
+    @Column(name = "type_id")
+    private Integer typeId;
 
-    @Column
     private String path;
 
-    public BookFile() {
+    @ManyToOne
+    @JoinColumn(name = "book_id",referencedColumnName = "id")
+    private Book book;
+
+    public String getBookFileExtensionString(){
+        return BookFileType.getExtensionStringByTypeID(typeId);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -38,11 +43,11 @@ public class BookFile {
         this.hash = hash;
     }
 
-    public int getTypeId() {
+    public Integer getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void setTypeId(Integer typeId) {
         this.typeId = typeId;
     }
 
@@ -52,5 +57,13 @@ public class BookFile {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

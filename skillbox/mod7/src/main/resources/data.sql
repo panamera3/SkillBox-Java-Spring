@@ -42,7 +42,6 @@ insert into tags (id, name, book_count) values (18, 'психология', 0);
 insert into tags (id, name, book_count) values (19, 'философия', 0);
 insert into tags (id, name, book_count) values (20, 'экранизировано', 0);
 
-
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, author_id, bought_count, cart_count, wishlist_count, total_count, popularity, tag_id	) values (1, '23.03.2022', 0, 'book-ajd-195', 'Dust Devil', 'http://dummyimage.com/257x350.png/dddddd/000000', 'Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.', 1844, 17.73, 20, 9, 56, 4, 9, 0, 19);
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, author_id, bought_count, cart_count, wishlist_count, total_count, popularity, tag_id	) values (2, '21.04.2012', 1, 'book-xkk-378', 'Cremaster 3', 'http://dummyimage.com/283x341.png/cc0000/ffffff', 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.', 1490, 16.63, 15, 89, 30, 100, 72, 0, 16);
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, author_id, bought_count, cart_count, wishlist_count, total_count, popularity, tag_id	) values (3, '06.12.2018', 0, 'book-owy-311', 'Sinbad (Szindbád)', 'http://dummyimage.com/309x327.png/dddddd/000000', 'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.', 1063, 91.96, 18, 54, 35, 16, 89, 0, 11);
@@ -1043,3 +1042,12 @@ insert into books (id, pub_date, is_bestseller, slug, title, image, description,
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, author_id, bought_count, cart_count, wishlist_count, total_count, popularity, tag_id	) values (998, '10.05.2020', 1, 'book-hxi-446', 'Butterfly Girl', 'http://dummyimage.com/318x335.png/cc0000/ffffff', 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.', 2022, 36.85, 2, 40, 57, 49, 64, 0, 17);
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, author_id, bought_count, cart_count, wishlist_count, total_count, popularity, tag_id	) values (999, '11.07.2020', 1, 'book-ien-017', 'Not with My Wife, You Don''t!', 'http://dummyimage.com/366x258.png/ff4444/ffffff', 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 479, 34.76, 13, 29, 83, 78, 21, 0, 8);
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, author_id, bought_count, cart_count, wishlist_count, total_count, popularity, tag_id	) values (1000, '29.12.2018', 0, 'book-oze-487', 'L: Change the World', 'http://dummyimage.com/284x283.png/ff4444/ffffff', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.', 1649, 23.46, 4, 84, 54, 16, 60, 0, 3);
+
+
+insert into book_file (id, hash, type_id, path, book_id) values (1, 'fsdl342ladads76432', 1, '/Dust_Devil.pdf', 1);
+insert into book_file (id, hash, type_id, path, book_id) values (2, 'asdl35436dads34235', 2, '/Dust_Devil.epub', 1);
+insert into book_file (id, hash, type_id, path, book_id) values (3, 'qwer342lafdss34123', 3, '/Dust_Devil.fb2', 1);
+
+insert into book_file (id, hash, type_id, path, book_id) values (4, 'dfasf3efg34tge4ifjk', 3, '/Cremaster_3.fb2', 2);
+
+

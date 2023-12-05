@@ -23,9 +23,9 @@ public interface BookRepo extends JpaRepository<Book,Integer> {
 
     List<Book> findBooksByTitleContaining(String bookTitle);
 
-    List<Book> findBooksByPriceOldBetween(Integer min, Integer max);
+    List<Book> findBooksByPriceBetween(Integer min, Integer max);
 
-    List<Book> findBooksByPriceOldIs(Integer price);
+    List<Book> findBooksByPriceIs(Integer price);
 
     @Query("from Book where isBestseller=1")
     List<Book> getBestsellers();
@@ -46,4 +46,6 @@ public interface BookRepo extends JpaRepository<Book,Integer> {
 
     @Query(value = "SELECT * FROM books WHERE author_id = :author_id", nativeQuery = true)
     Page<Book> findByAuthorId(@Param("author_id") Integer author_id, Pageable nextPage);
+
+    Book findBookBySlug(String slug);
 }

@@ -44,11 +44,11 @@ public class BookService {
     }
 
     public List<Book> getBooksWithPriceBetween(Integer min, Integer max){
-        return bookRepo.findBooksByPriceOldBetween(min, max);
+        return bookRepo.findBooksByPriceBetween(min, max);
     }
 
     public List<Book> getBooksWithPrice(Integer price){
-        return bookRepo.findBooksByPriceOldIs(price);
+        return bookRepo.findBooksByPriceIs(price);
     }
 
     public List<Book> getBooksWithMaxPrice(){
