@@ -41,7 +41,6 @@ public class BooksController {
         this.storage = storage;
     }
 
-
     @GetMapping("/recent/index")
     public String recentPage(Model model) {
         model.addAttribute("booksData", bookService.getPageofRecentBooks(0, 5).getContent());
@@ -112,5 +111,10 @@ public class BooksController {
                 .contentType(mediaType)
                 .contentLength(data.length)
                 .body(new ByteArrayResource(data));
+    }
+
+    @GetMapping("/slugmy")
+    public String bookMyPage() {
+        return "books/slugmy";
     }
 }

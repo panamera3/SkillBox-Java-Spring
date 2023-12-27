@@ -49,11 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/my","/profile").authenticated()//.hasRole("USER")
+                .antMatchers("/my","/profile", "/slugmy").authenticated()//.hasRole("USER")
                 .antMatchers("/**").permitAll()
-                .and().formLogin()
-                .loginPage("/signin").failureUrl("/signin")
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/signin").deleteCookies("token")
+                .and().formLogin().loginPage("/signin").failureUrl("/logout")
+                .and().logout().logoutUrl("/logout").deleteCookies("token")
                 .and().oauth2Login()
                 .and().oauth2Client();
 

@@ -17,6 +17,7 @@ public class BookstoreUserRegister {
     private final AuthenticationManager authenticationManager;
     private final BookstoreUserDetailsService bookstoreUserDetailsService;
     private final JWTUtil jwtUtil;
+    public String jwtToken;
 
     @Autowired
     public BookstoreUserRegister(BookstoreUserRepository bookstoreUserRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, BookstoreUserDetailsService bookstoreUserDetailsService, JWTUtil jwtUtil) {
@@ -25,6 +26,7 @@ public class BookstoreUserRegister {
         this.authenticationManager = authenticationManager;
         this.bookstoreUserDetailsService = bookstoreUserDetailsService;
         this.jwtUtil = jwtUtil;
+        this.jwtToken = "";
     }
 
     public void registerNewUser(RegistrationForm registrationForm) {
@@ -59,6 +61,7 @@ public class BookstoreUserRegister {
         String jwtToken = jwtUtil.generateToken(userDetails);
         ContactConfirmationResponse response = new ContactConfirmationResponse();
         response.setResult(jwtToken);
+        this.jwtToken = jwtToken;
         return response;
     }
 
