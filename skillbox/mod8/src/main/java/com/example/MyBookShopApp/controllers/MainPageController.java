@@ -68,18 +68,10 @@ public class MainPageController {
         return new SearchWordDto();
     }
 
-<<<<<<< HEAD
-    @GetMapping(value = {"/search", "/search/{searchWord}"})
-    public String getSearchResult(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
-                                  Model model) throws EmptySearchException {
-        if(searchWordDto!=null){
-
-=======
     @GetMapping(value = {"/search", "/search/{searchWord}", "/search/"})
     public String getSearchResult(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
                                   Model model) throws EmptySearchException {
         if(searchWordDto!=null){
->>>>>>> test
             model.addAttribute("searchWordDto", searchWordDto);
             model.addAttribute("searchResults",
                     bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
