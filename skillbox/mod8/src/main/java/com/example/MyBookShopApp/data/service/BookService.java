@@ -45,7 +45,11 @@ public class BookService {
             throw new BookstoreApiWrongParameterException("Wrong values passed to one or more parameters");
         }else{
             List<Book> data = bookRepository.findBooksByTitleContaining(title);
+<<<<<<< HEAD
             if(data.size()>0){
+=======
+            if(data.size() > 0){
+>>>>>>> test
                 return data;
             }else {
                 throw new BookstoreApiWrongParameterException("No data found with specified parameters...");

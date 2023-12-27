@@ -5,7 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class BookstoreUser {
+<<<<<<< HEAD
 
+=======
+>>>>>>> test
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
