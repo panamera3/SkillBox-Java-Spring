@@ -11,11 +11,11 @@ public enum BookFileType {
     }
 
     public static String getExtensionStringByTypeID(Integer typeId){
-        switch (typeId){
-            case 1:return BookFileType.PDF.fileExtensionString;
-            case 2:return BookFileType.EPUB.fileExtensionString;
-            case 3:return BookFileType.FB2.fileExtensionString;
-            default:return "";
-        }
+        return switch (typeId) {
+            case 1 -> BookFileType.PDF.fileExtensionString;
+            case 2 -> BookFileType.EPUB.fileExtensionString;
+            case 3 -> BookFileType.FB2.fileExtensionString;
+            default -> "";
+        };
     }
 }

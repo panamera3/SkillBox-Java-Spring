@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -49,10 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/my","/profile", "/slugmy").authenticated()//.hasRole("USER")
+                .antMatchers("/my","/profile").authenticated()//.hasRole("USER")
                 .antMatchers("/**").permitAll()
-                .and().formLogin().loginPage("/signin").failureUrl("/logout")
-                .and().logout().logoutUrl("/logout").deleteCookies("token")
+                .and().formLogin()
+                .loginPage("/signin").failureUrl("/signin")
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/signin").deleteCookies("token")
                 .and().oauth2Login()
                 .and().oauth2Client();
 

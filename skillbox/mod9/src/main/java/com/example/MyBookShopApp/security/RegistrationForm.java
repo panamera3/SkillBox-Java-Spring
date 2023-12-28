@@ -5,7 +5,7 @@ public class RegistrationForm {
     private String name;
     private String email;
     private String phone;
-    private String password;
+    private String pass;
 
     public String getName() {
         return name;
@@ -31,11 +31,11 @@ public class RegistrationForm {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

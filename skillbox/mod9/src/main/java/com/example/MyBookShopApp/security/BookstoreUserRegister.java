@@ -17,7 +17,6 @@ public class BookstoreUserRegister {
     private final AuthenticationManager authenticationManager;
     private final BookstoreUserDetailsService bookstoreUserDetailsService;
     private final JWTUtil jwtUtil;
-    public String jwtToken;
 
     @Autowired
     public BookstoreUserRegister(BookstoreUserRepository bookstoreUserRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, BookstoreUserDetailsService bookstoreUserDetailsService, JWTUtil jwtUtil) {
@@ -26,25 +25,26 @@ public class BookstoreUserRegister {
         this.authenticationManager = authenticationManager;
         this.bookstoreUserDetailsService = bookstoreUserDetailsService;
         this.jwtUtil = jwtUtil;
-        this.jwtToken = "";
     }
 
-    public void registerNewUser(RegistrationForm registrationForm) {
+    public BookstoreUser registerNewUser(RegistrationForm registrationForm) {
 
         if (bookstoreUserRepository.findBookstoreUserByEmail(registrationForm.getEmail()) == null) {
             BookstoreUser user = new BookstoreUser();
             user.setName(registrationForm.getName());
             user.setEmail(registrationForm.getEmail());
             user.setPhone(registrationForm.getPhone());
-            user.setPassword(passwordEncoder.encode(registrationForm.getPassword()));
+            user.setPassword(passwordEncoder.encode(registrationForm.getPass()));
             bookstoreUserRepository.save(user);
+            return user;
         }
+        return null;
     }
 
     public ContactConfirmationResponse login(ContactConfirmationPayload payload) {
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(payload.getContact(),
-                        payload.getCode()));
+                payload.getCode()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         ContactConfirmationResponse response = new ContactConfirmationResponse();
@@ -61,7 +61,6 @@ public class BookstoreUserRegister {
         String jwtToken = jwtUtil.generateToken(userDetails);
         ContactConfirmationResponse response = new ContactConfirmationResponse();
         response.setResult(jwtToken);
-        this.jwtToken = jwtToken;
         return response;
     }
 

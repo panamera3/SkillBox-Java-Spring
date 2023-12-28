@@ -1,9 +1,9 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.ApiResponse;
-import com.example.MyBookShopApp.data.book.Book;
-import com.example.MyBookShopApp.data.service.BookService;
-import com.example.MyBookShopApp.errs.BookstoreApiWrongParameterException;
+import com.example.MyBookShopApp.data.dto.ApiResponse;
+import com.example.MyBookShopApp.data.model.Book;
+import com.example.MyBookShopApp.services.BookService;
+import com.example.MyBookShopApp.exceptions.BookstoreApiWrongParameterException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ public class BooksRestApiController {
 
     private final BookService bookService;
 
+
     @Autowired
     public BooksRestApiController(BookService bookService) {
         this.bookService = bookService;
@@ -35,7 +36,7 @@ public class BooksRestApiController {
 
     @GetMapping("/books/by-title")
     @ApiOperation("get books by title")
-    public ResponseEntity<ApiResponse<Book>> booksByTitle(@RequestParam("title")String title) throws BookstoreApiWrongParameterException {
+    public ResponseEntity<ApiResponse<Book>> booksByTitle(@RequestParam("title")String title) {
         ApiResponse<Book> response = new ApiResponse<>();
         List<Book> data = bookService.getBooksByTitle(title);
         response.setDebugMessage("successful request");
@@ -48,7 +49,7 @@ public class BooksRestApiController {
 
     @GetMapping("/books/by-price-range")
     @ApiOperation("get books by price range from min price to max price")
-    public ResponseEntity<List<Book>> priceRangeBookss(@RequestParam("min")Integer min, @RequestParam("max")Integer max){
+    public ResponseEntity<List<Book>> priceRangeBooks(@RequestParam("min")Integer min, @RequestParam("max")Integer max){
         return ResponseEntity.ok(bookService.getBooksWithPriceBetween(min, max));
     }
 
@@ -66,13 +67,13 @@ public class BooksRestApiController {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<ApiResponse<Book>> handleMissingServletRequestParameterException(Exception exception){
-        return new ResponseEntity<>(new ApiResponse<Book>(HttpStatus.BAD_REQUEST, "Missing required parameters",
+        return new ResponseEntity<>(new ApiResponse<>(HttpStatus.BAD_REQUEST, "Missing required parameters",
                 exception), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(BookstoreApiWrongParameterException.class)
     public ResponseEntity<ApiResponse<Book>> handleBookstoreApiWrongParameterException(Exception exception){
-        return new ResponseEntity<>(new ApiResponse<Book>(HttpStatus.BAD_REQUEST, "Bad parameter value...",exception)
-        ,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ApiResponse<>(HttpStatus.BAD_REQUEST, "Bad parameter value...", exception)
+                ,HttpStatus.BAD_REQUEST);
     }
 }

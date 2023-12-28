@@ -9,8 +9,7 @@
 <html class="ie9" lang="ru">
 <![endif]-->
 <!--[if gt IE 9]><!-->
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<!--<![endif]-->
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
 <head>
     <title>Тут название страницы написать</title>
     <meta name="description" content="Описание страницы">
@@ -30,18 +29,6 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script defer src="/assets/js/scripts.min.js?v=88436650"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function (){
-            $("#locales").change(function (){
-                var selectedOption = $("#locales").val();
-                if(selectedOption != ''){
-                    window.location.replace('?lang='+selectedOption);
-                }
-            });
-        });
-    </script>
 </head>
 <body class="Site">
 <!--if lt IE 8
@@ -85,7 +72,7 @@ p.error-browser
                     </div>
                 </div>
                 <div class="row-block Header-cart">
-                    <div class="CartBlock"><a class="CartBlock-block" href="/my">
+                    <div class="CartBlock"><a class="CartBlock-block" href="/my.html">
                         <svg class="CartBlock-img" width="30" height="30" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 412.72 412.72"
                              style="enable-background:new 0 0 412.72 412.72;" xml:space="preserve"><g> <g> <path
@@ -105,7 +92,7 @@ p.error-browser
                             <g> </g>
                             <g> </g>
                             <g> </g></svg>
-                        <span class="CartBlock-amount">0</span></a><a class="CartBlock-block" href="/postponed">
+                        <span class="CartBlock-amount">0</span></a><a class="CartBlock-block" href="/postponed.html">
                         <svg class="CartBlock-img" xmlns="http://www.w3.org/2000/svg" height="23" width="23"
                              viewBox="0 0 512 512">
                             <g>
@@ -115,7 +102,7 @@ p.error-browser
                                 </g>
                             </g>
                         </svg>
-                        <span class="CartBlock-amount">0</span></a><a class="CartBlock-block" href="/cart">
+                        <span class="CartBlock-amount">0</span></a><a class="CartBlock-block" href="/cart.html">
                         <svg class="CartBlock-img" xmlns="http://www.w3.org/2000/svg" width="30" height="23"
                              viewBox="0 0 30 23">
                             <g>
@@ -126,7 +113,7 @@ p.error-browser
                             </g>
                         </svg>
                         <span class="CartBlock-amount">0</span></a><a class="CartBlock-block CartBlock-block_text"
-                                                                      th:href="@{/profile}" href="/profile">
+                                                                      th:href="@{/profile}" href="/profile.html">
                         <svg class="CartBlock-img" height="30" viewBox="0 0 511.989 511.989" width="30"
                              xmlns="http://www.w3.org/2000/svg">
                             <g>
@@ -149,15 +136,15 @@ p.error-browser
         <div class="wrap">
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">
-                    <li class="menu-item"><a class="menu-link" href="/index">Главная</a>
+                    <li class="menu-item"><a class="menu-link" href="/index.html">Главная</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/genres/index">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" href="/genres/index.html">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html">Новинки</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/authors/index">Авторы</a>
+                    <li class="menu-item"><a class="menu-link" href="/authors/index.html">Авторы</a>
                     </li>
                 </ul>
             </nav>
@@ -168,9 +155,9 @@ p.error-browser
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index">Главная</a>
+                <li class="breadcrumbs-item"><a href="/index.html">Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/profile">Мой профиль</a>
+                <li class="breadcrumbs-item"><a href="/profile.html">Мой профиль</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current"><span>Мои книги</span>
                 </li>
@@ -180,7 +167,7 @@ p.error-browser
                     <h1 class="Section-title">Мои книги
                     </h1>
                     <div class="Section-header-links"><span class="Section-header-link Section-header-link_ACTIVE">Непрочитанные</span><a
-                            class="Section-header-link" href="/myarchive">Архив</a>
+                            class="Section-header-link" href="/myarchive.html">Архив</a>
                     </div>
                 </div>
                 <div class="Cards">
@@ -553,44 +540,44 @@ p.error-browser
             </div>
             <div class="row-block">
                 <ul class="menu menu_vt Footer-menu">
-                    <li class="menu-item"><a class="menu-link" href="/genres/index">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" href="/genres/index.html">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html">Новинки</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/authors/index">Авторы</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="row-block">
-                <ul class="menu menu_vt Footer-menu">
-                    <li class="menu-item"><a class="menu-link" href="/my">Мои книги (55)</a>
-                    </li>
-                    <li class="menu-item"><a class="menu-link" href="/cart">Корзина (7)</a>
-                    </li>
-                    <li class="menu-item"><a class="menu-link" href="/postponed">Отложено (2)</a>
-                    </li>
-                    <li class="menu-item"><a class="menu-link" href="/profile">Мой профиль</a>
+                    <li class="menu-item"><a class="menu-link" href="/authors/index.html">Авторы</a>
                     </li>
                 </ul>
             </div>
             <div class="row-block">
                 <ul class="menu menu_vt Footer-menu">
-                    <li class="menu-item"><a class="menu-link" href="/documents/index">Документы</a>
+                    <li class="menu-item"><a class="menu-link" href="/my.html">Мои книги (55)</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/about">О компании</a>
+                    <li class="menu-item"><a class="menu-link" href="/cart.html">Корзина (7)</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/faq">Помощь</a>
+                    <li class="menu-item"><a class="menu-link" href="/postponed.html">Отложено (2)</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/contacts">Контакты</a>
+                    <li class="menu-item"><a class="menu-link" href="/profile.html">Мой профиль</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row-block">
+                <ul class="menu menu_vt Footer-menu">
+                    <li class="menu-item"><a class="menu-link" href="/documents/index.html">Документы</a>
+                    </li>
+                    <li class="menu-item"><a class="menu-link" href="/about.html">О компании</a>
+                    </li>
+                    <li class="menu-item"><a class="menu-link" href="/faq.html">Помощь</a>
+                    </li>
+                    <li class="menu-item"><a class="menu-link" href="/contacts.html">Контакты</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="Footer-copy">
-        <div class="wrap">© 2023 Bookshop Pty Ltd. ALL RIGHTS RESERVED
+        <div class="wrap">© 2016 Bookshop Pty Ltd. ALL RIGHTS RESERVED
         </div>
     </div>
 </footer>
